@@ -33,7 +33,7 @@ matrix = neomatrix.NeoMatrix(
     NUM_COLS, NUM_CELLS,
     1, 1,
     matrixType,
-    rotation=0,
+    rotation=2,
 )
 
 
@@ -182,7 +182,7 @@ def fire2012(column):
     # Step 4.  Map from heat cells to LED colors
     for row in range(NUM_CELLS):
         color = PALETTE[heat[col+row]]
-        matrix.pixel(column, NUM_CELLS-1-row, color)
+        matrix.pixel(column, row, color)
 
 
 ########## main loop #################
