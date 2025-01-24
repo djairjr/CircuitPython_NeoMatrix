@@ -3,38 +3,38 @@
 
 #######################################
 
-# Map 16x16 NeoPixel matrix coordinates to sequential strand indices [0..255].
-# Works with one square NeoMatrix tile wired as a 16x16 display.
+# Map 8x32 NeoPixel matrix coordinates to sequential strand indices [0..255].
+# Works with one NeoMatrix tile wired as a 8x32 display.
 
 import neopixel
 import neomatrix
 
 #######################################
 
-# Use matrixMode to select matrix type for 2 tile arrangements of a 16x16 matrix
-#   matrixMode = "hsquare"      # 1x1 horizontally arranged 16x16 tile
-#   matrixMode = "vsquare"      # 1x1 vertically arranged 16x16 tile
+# Use matrixMode to select matrix type for 2 tile arrangements of a 8x32 matrix
+#   matrixMode = "hstripe"      # 1x1 horizontally arranged 32x8 tile
+#   matrixMode = "vstripe"      # 1x1 vertically arranged 8x32 tile
 
 def MatrixSetup(pixel_pin, matrixMode, brightness = 0.1):
 
-    if (matrixMode == "hsquare"):       # one horizontally arranged 16x16 tile
+    if (matrixMode == "hstripe"):       # one horizontally arranged 32x8 tile
         matrixType = (
-            neomatrix.NEO_MATRIX_BOTTOM + neomatrix.NEO_MATRIX_LEFT +
-            neomatrix.NEO_MATRIX_ROWS + neomatrix.NEO_MATRIX_ZIGZAG
+            neomatrix.NEO_MATRIX_TOP + neomatrix.NEO_MATRIX_LEFT +
+            neomatrix.NEO_MATRIX_COLUMN + neomatrix.NEO_MATRIX_ZIGZAG
         )
-        tileWidth = 16
-        tileHeight = 16
+        tileWidth = 32
+        tileHeight = 8
         tilesX = 1
         tilesY = 1
         rotation = 0
 
-    elif (matrixMode == "vsquare"):     # one vertically arranged 16x16 tile
+    elif (matrixMode == "vstripe"):     # one vertically arranged 8x32 tile
         matrixType = (
-            neomatrix.NEO_MATRIX_TOP + neomatrix.NEO_MATRIX_LEFT +
-            neomatrix.NEO_MATRIX_COLUMNS + neomatrix.NEO_MATRIX_ZIGZAG
+            neomatrix.NEO_MATRIX_BOTTOM + neomatrix.NEO_MATRIX_LEFT +
+            neomatrix.NEO_MATRIX_ROWS + neomatrix.NEO_MATRIX_ZIGZAG
         )
-        tileWidth = 16
-        tileHeight = 16
+        tileWidth = 8
+        tileHeight = 32
         tilesX = 1
         tilesY = 1
         rotation = 0
