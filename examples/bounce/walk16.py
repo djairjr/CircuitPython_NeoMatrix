@@ -1,4 +1,8 @@
+# SPDX-FileCopyrightText: 2025 Mike Doerr
+# SPDX-License-Identifier: MIT
+'''
 # Random walk on 16x16 neopixel matrix
+'''
 
 import board
 import random

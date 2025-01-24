@@ -1,6 +1,11 @@
+# SPDX-FileCopyrightText: 2025 Mike Doerr
+# SPDX-License-Identifier: MIT
+
+'''
 # Class for 2D points that are moving
 # - coords X, Y
 # - delta dX, dY
+'''
 
 import random
 

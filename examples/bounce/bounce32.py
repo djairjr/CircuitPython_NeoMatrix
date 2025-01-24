@@ -1,4 +1,8 @@
+# SPDX-FileCopyrightText: 2025 Mike Doerr
+# SPDX-License-Identifier: MIT
+'''
 # Bouncing lines on 32x32 neopixel matrix
+'''
 
 import board
 import random

@@ -1,4 +1,4 @@
-# SPDX-FileCopyrightText: 2024 Michael Doerr
+# SPDX-FileCopyrightText: 2025 Michael Doerr
 # SPDX-FileCopyrightText: 2020 Melissa LeBlanc-Williams, written for Adafruit Industries
 # SPDX-License-Identifier: MIT
 """

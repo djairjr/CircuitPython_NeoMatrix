@@ -1,4 +1,4 @@
-# SPDX-FileCopyrightText: 2024 Pagong
+# SPDX-FileCopyrightText: 2025 Pagong
 # SPDX-License-Identifier: MIT
 '''
 # This is for WaveShare ESP32-S3-Zero with single 16x16 NeoPixel-Matrix
