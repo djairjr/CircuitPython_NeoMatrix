@@ -4,11 +4,13 @@
 """
 This example runs on a WaveShare ESP32-S3-Zero
 """
+
 import board
 import neopixel
 
 import neomatrix
 
+# Pin for my WaveShare ESP32-S3-Zero
 pixel_pin = board.IO1
 pixel_width = 16
 pixel_height = 16
@@ -25,7 +27,7 @@ pixels = neopixel.NeoPixel(
 matrixType = ( neomatrix.NEO_MATRIX_BOTTOM + neomatrix.NEO_MATRIX_LEFT +
                neomatrix.NEO_MATRIX_ROWS   + neomatrix.NEO_MATRIX_ZIGZAG )
 
-mtx = neomatrix.NeoMatrix(
+matrix = neomatrix.NeoMatrix(
     pixels,
     pixel_width, pixel_height,
     tiles_X, tiles_Y,
@@ -33,8 +35,8 @@ mtx = neomatrix.NeoMatrix(
     rotation=0,
 )
 
-mtx.fill(0x000088)
-mtx.pixel(5, 1, 0xFFFF00)
-mtx.line(0, 0, pixel_width - 1, pixel_height - 1, 0x00FF00)
-mtx.display()
+matrix.fill(0x000088)
+matrix.pixel(5, 1, 0xFFFF00)
+matrix.line(0, 0, pixel_width - 1, pixel_height - 1, 0x00FF00)
+matrix.display()
 
