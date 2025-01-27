@@ -29,3 +29,17 @@ See the [Adafruit NeoPixel Überguide](https://learn.adafruit.com/adafruit-neopi
 
 ## Demos
 
+There are several demo directories in the examples directory that are utilizing the `neomatrix` library.
+
+Files with an 8 in the name are intended for 8x8 or 8x32 NeoPixel matrices.
+Files with a 16 in the name are meant for 16x16 NeoMatrices and 
+files with a 32 in the name should be used for tiled 32x32 matrices.
+
+``` bash
+examples/
+├── bounce              # bouncing lines and random walks
+├── fire                # Mark Kriegsman's Fire2012 simulation
+├── rainbow             # spiraling rainbows
+└── water
+``` 
+
