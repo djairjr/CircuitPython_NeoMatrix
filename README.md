@@ -29,7 +29,8 @@ See the [Adafruit NeoPixel Überguide](https://learn.adafruit.com/adafruit-neopi
 
 ## Demos
 
-There are several demo directories in the examples directory that are utilizing the `neomatrix` library.
+There are several demos in the examples directory that are showing how
+the `neomatrix` library and the helper modules `matrix<##>.py` can be used.
 
 Files with an 8 in the name are intended for 8x8 or 8x32 NeoPixel matrices.
 Files with a 16 in the name are meant for 16x16 NeoMatrices and 
@@ -38,8 +39,24 @@ files with a 32 in the name should be used for tiled 32x32 matrices.
 ``` bash
 examples/
 ├── bounce              # bouncing lines and random walks
+│   ├── bounce32.py
+│   ├── lines16.py
+│   ├── lines32.py
+│   ├── point.py
+│   ├── walk16.py
+│   └── walk32.py
 ├── fire                # Mark Kriegsman's Fire2012 simulation
+│   ├── fire16_a.py
+│   ├── fire16_b.py
+│   └── fire8.py
 ├── rainbow             # spiraling rainbows
-└── water
+│   ├── spiral16_a.py
+│   ├── spiral16_b.py
+│   ├── spiral32.py
+│   └── spiral8.py
+└── water               # Waterfall (Fire2012 with a blue palette)
+    ├── water16_a.py
+    ├── water16_b.py
+    └── water8.py
 ``` 
 
