@@ -1,7 +1,7 @@
 ## CircuitPython_NeoMatrix
 
 Port of Adafruit's `Adafruit_NeoMatrix` [library](https://github.com/adafruit/Adafruit_NeoMatrix) for the Arduino to CircuitPython.  
-See the [Adafruit NeoPixel Überguide](https://learn.adafruit.com/adafruit-neopixel-uberguide/neomatrix-library) for everything you need to know about NeoPixel-Grids.
+See the [Adafruit NeoPixel Überguide](https://learn.adafruit.com/adafruit-neopixel-uberguide/neomatrix-library) for everything you need to know about NeoPixel grids.
 
 - Features:
   - Single matrix: 8x8, 16x16, 8x32, 32x8 NeoPixels
@@ -14,7 +14,7 @@ See the [Adafruit NeoPixel Überguide](https://learn.adafruit.com/adafruit-neopi
 - Vertical strips (column major)
   - 8w * 8h, 16w * 16h, 32w * 8h
   - zigzag and progressive columns
-- position of first Pixel
+- Position of first Pixel
   - Bottom, Top, Left, Right
 
 ### Tiled matrices
@@ -32,7 +32,7 @@ See the [Adafruit NeoPixel Überguide](https://learn.adafruit.com/adafruit-neopi
 There are several demos in the examples directory that are showing how
 the `neomatrix` library and the helper modules `matrix<##>.py` can be used.
 
-Files with an 8 in the name are intended for 8x8 or 8x32 NeoPixel matrices.
+Python files with an 8 in the name are intended for 8x8 or 8x32 NeoPixel matrices.
 Files with a 16 in the name are meant for 16x16 NeoMatrices and 
 files with a 32 in the name should be used for tiled 32x32 matrices.
 
@@ -45,18 +45,28 @@ examples/
 │   ├── point.py
 │   ├── walk16.py
 │   └── walk32.py
-├── fire                # Mark Kriegsman's Fire2012 simulation
-│   ├── fire16_a.py
-│   ├── fire16_b.py
-│   └── fire8.py
 ├── rainbow             # spiraling rainbows
 │   ├── spiral16_a.py
 │   ├── spiral16_b.py
 │   ├── spiral32.py
 │   └── spiral8.py
+├── life                # Tim C's Game of Life animation
+│   ├── animate_life.py
+│   ├── life16.py
+│   ├── life32.py
+│   └── life8.py
+├── snake               # Tim C's snake animation
+│   ├── animate_snake.py
+│   ├── snake16.py
+│   ├── snake32.py
+│   └── snake8.py
+├── fire                # Mark Kriegsman's Fire2012 simulation
+│   ├── fire16_a.py
+│   ├── fire16_b.py
+│   └── fire8.py
 └── water               # Waterfall (Fire2012 with a blue palette)
     ├── water16_a.py
     ├── water16_b.py
     └── water8.py
-``` 
+```
 
