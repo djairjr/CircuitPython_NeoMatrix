@@ -24,23 +24,23 @@ X = WIDTH  // 2
 Y = HEIGHT // 2
 
 COL = 0
-LEN = 10
+LEN = 5
 
 def draw():
     global X, Y, COL, LEN
 
-    nextX = X + (random.randint(0, LEN) - LEN//2)
+    nextX = X + random.randint(-LEN, LEN)
     if nextX<0: nextX = 0
     if nextX >= WIDTH: nextX = WIDTH-1
 
-    nextY = Y + (random.randint(0, LEN) - LEN//2)
+    nextY = Y + random.randint(-LEN, LEN)
     if nextY<0: nextY = 0
     if nextY >= HEIGHT: nextY = HEIGHT-1
 
     color = rainbowio.colorwheel(COL)
     matrix.line(X, Y, nextX, nextY, color)
 
-    COL = (COL + random.randint(0, 10)) & 255
+    COL = (COL + random.randint(1, 9)) & 255
     X = nextX
     Y = nextY
 

@@ -23,7 +23,7 @@ WIDTH = matrix._width
 HEIGHT = matrix._height
 
 COL = 0
-LEN = 6
+LEN = 2
 
 
 def line(Start, End):
@@ -32,7 +32,7 @@ def line(Start, End):
     color = rainbowio.colorwheel(COL)
     matrix.line(Start.X, Start.Y, End.X, End.Y, color)
 
-    COL = (COL + random.randint(0, 10)) & 255
+    COL = (COL + random.randint(1, 9)) & 255
     Start.update()
     End.update()
 
@@ -47,7 +47,7 @@ def loop(count):
 
 ######
 
-CNT = 8
+CNT = 16
 while True:
     loop(CNT)
     sleep(3)

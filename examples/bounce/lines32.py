@@ -13,7 +13,10 @@ import matrix32
 
 NEO_PIN = board.IO1     # for my WS ESP32-S3-Zero
 
-matrix = matrix32.MatrixSetup(NEO_PIN, "vstripes", 0.1)
+BRIGHT = 0.1
+#MODE = "vstripes"
+MODE = "hsquares"
+matrix = matrix32.MatrixSetup(NEO_PIN, MODE, BRIGHT)
 
 from bounce.point import Point
 
@@ -23,7 +26,7 @@ WIDTH = matrix._width
 HEIGHT = matrix._height
 
 COL = 0
-LEN = 6
+LEN = 3
 
 
 def line(Start, End):
@@ -32,7 +35,7 @@ def line(Start, End):
     color = rainbowio.colorwheel(COL)
     matrix.line(Start.X, Start.Y, End.X, End.Y, color)
 
-    COL = (COL + random.randint(0, 10)) & 255
+    COL = (COL + random.randint(1, 9)) & 255
     Start.update()
     End.update()
 

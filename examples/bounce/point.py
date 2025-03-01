@@ -19,11 +19,11 @@ class Point:
         self._width = width
         self._height = height
 
-        self.X = random.randint(0, width)
-        self.Y = random.randint(0, height)
+        self.X = random.randint(0, width-1)
+        self.Y = random.randint(0, height-1)
 
-        self.dX = random.randint(0, delta) - delta//2
-        self.dY = random.randint(0, delta) - delta//2
+        self.dX = random.randint(-delta, delta)
+        self.dY = random.randint(-delta, delta)
 
 
     def update(self):
