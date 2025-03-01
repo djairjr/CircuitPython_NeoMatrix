@@ -48,8 +48,11 @@ examples/
 ├── rainbow             # spiraling rainbows
 │   ├── spiral16_a.py
 │   ├── spiral16_b.py
-│   ├── spiral32.py
-│   └── spiral8.py
+│   ├── spiral16_c.py
+│   ├── spiral32_a.py
+│   ├── spiral32_b.py
+│   ├── spiral8_a.py
+│   └── spiral8_b.py
 ├── life                # Tim C's Game of Life animation
 │   ├── animate_life.py
 │   ├── life16.py
@@ -63,10 +66,14 @@ examples/
 ├── fire                # Mark Kriegsman's Fire2012 simulation
 │   ├── fire16_a.py
 │   ├── fire16_b.py
+│   ├── fire16_c.py
+│   ├── fire32.py
 │   └── fire8.py
 └── water               # Waterfall (Fire2012 with a blue palette)
     ├── water16_a.py
     ├── water16_b.py
+    ├── water16_c.py
+    ├── water32.py
     └── water8.py
 ```
 
