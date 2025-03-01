@@ -18,6 +18,7 @@ import matrix16
 BRIGHTNESS = 0.1   # A number between 0.0 and 1.0, where 0.0 is off, and 1.0 is max.
 NEO_PIN = board.IO1 # NeoPixel pin on my ESP32-S3-Zero with 16x16 NeoPixel matrix
 matrix = matrix16.MatrixSetup(NEO_PIN, "hsquare", BRIGHTNESS)
+grid = matrix._grid
 
 NUM_COLS = matrix._width
 NUM_CELLS = matrix._height
@@ -172,7 +173,7 @@ def fire2012(column):
     # Step 4.  Map from heat cells to LED colors
     for row in range(NUM_CELLS):
         color = PALETTE[heat[col+row]]
-        matrix.pixel(column, NUM_CELLS-1-row, color)
+        grid[column][NUM_CELLS-1-row] = color
 
 
 ########## main loop #################
@@ -186,7 +187,7 @@ while True:
         fire2012(column)
     t2 = time.monotonic_ns()
 
-    matrix.display()
+    grid.show()
     t3 = time.monotonic_ns()
 
     if Debug:

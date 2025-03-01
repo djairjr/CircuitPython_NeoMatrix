@@ -1,7 +1,7 @@
 # SPDX-FileCopyrightText: 2025 Pagong
 # SPDX-License-Identifier: MIT
 '''
-# This is for WaveShare ESP32-S3-Zero with single 16x16 NeoPixel-Matrix
+# This is for WaveShare ESP32-S3-Zero with a 32x32 NeoPixel-Matrix
 '''
 
 import time
@@ -11,13 +11,14 @@ import array
 import random
 
 import neomatrix
-import matrix16
+import matrix32
 
 #####################
 
 BRIGHTNESS = 0.1   # A number between 0.0 and 1.0, where 0.0 is off, and 1.0 is max.
-NEO_PIN = board.IO1 # NeoPixel pin on my ESP32-S3-Zero with 16x16 NeoPixel matrix
-matrix = matrix16.MatrixSetup(NEO_PIN, "hsquare", BRIGHTNESS)
+NEO_PIN = board.IO1 # NeoPixel pin on my ESP32-S3-Zero with 32x32 NeoPixel matrix
+matrix = matrix32.MatrixSetup(NEO_PIN, "hsquares", BRIGHTNESS)
+grid = matrix._grid
 
 NUM_COLS = matrix._width
 NUM_CELLS = matrix._height
@@ -29,7 +30,7 @@ HEAT = bytearray(NUM_PIXELS)
 
 ####################### color mapping ###################
 
-ACT_PALETTE = 0        # 0 = Heat, 1 = Rainbow, 2 = Water, 3 = Forest
+ACT_PALETTE = 2        # 0 = Heat, 1 = Rainbow, 2 = Water, 3 = Forest
 
 HeatColors_palette = [
     0x000000,
@@ -170,9 +171,10 @@ def fire2012(column):
         heat[col+j] = newheat if (newheat <= 255) else 255
 
     # Step 4.  Map from heat cells to LED colors
+    pxl = grid[column]
     for row in range(NUM_CELLS):
         color = PALETTE[heat[col+row]]
-        matrix.pixel(column, NUM_CELLS-1-row, color)
+        pxl[row] = color
 
 
 ########## main loop #################
@@ -186,7 +188,7 @@ while True:
         fire2012(column)
     t2 = time.monotonic_ns()
 
-    matrix.display()
+    grid.show()
     t3 = time.monotonic_ns()
 
     if Debug:

@@ -204,7 +204,8 @@ while True:
         print(f"Compute {d1} ms", end=" +\t")
         d2 = (t3 - t2) / 1000000.0
         print(f"Display {d2} ms", end=" =\t")
-        print(f"Total {d1+d2} ms")
+        print(f"Total {d1+d2} ms", end=" -->\t")
+        print(f"{1000.0/(d1+d2)} fps")
 
     time.sleep(SPEED)
 
