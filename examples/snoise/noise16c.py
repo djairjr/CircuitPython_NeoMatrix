@@ -3,8 +3,8 @@
 # https://github.com/todbot/CircuitPython_Noise
 #
 # 2 Mar 2025 - @pagong
-# Uses WaveShare ESP32-S3-Matrix with an 8x8 LED matrix
-# https://circuitpython.org/board/waveshare_esp32_s3_matrix/
+# Uses WaveShare ESP32-S3-Zero with a 16x16 NeoPixel matrix
+# https://circuitpython.org/board/waveshare_esp32_s3_zero/
 
 import time
 import board
@@ -12,38 +12,27 @@ import random
 import neopixel
 import rainbowio
 
-import neomatrix
+import matrix16
 
 #####################
 
-# for WS ESP32-S3-Matrix with 8x8 NeoPixel-Matrix
-NUM_COLS = 8
-NUM_CELLS = 8
+# for WS ESP32-S3-Zero with 16x16 NeoPixel-Matrix
+BRIGHTNESS = 0.1   # A number between 0.0 and 1.0, where 0.0 is off, and 1.0 is max.
+PIN = board.IO1    # This is the default pin on WS ESP32-S3-Zero with 16x16 NeoPixel matrix
+matrix = matrix16.MatrixSetup(PIN, "hsquare", BRIGHTNESS)
+grid = matrix._grid
+
+NUM_COLS = matrix._width
+NUM_CELLS = matrix._height
 
 NUM_PIXELS = (NUM_COLS * NUM_CELLS)  # Update this to match the number of LEDs.
 SPEED = 0.01       # Increase to slow down the animation. Decrease to speed it up.
-BRIGHTNESS = 0.1   # A number between 0.0 and 1.0, where 0.0 is off, and 1.0 is max.
-PIN = board.IO14   # This is the default pin on WS ESP32-S3-Matrix with 8x8 NeoPixel matrix
 
-leds = neopixel.NeoPixel(PIN, NUM_PIXELS, pixel_order=neopixel.RGB, auto_write=False)
+# prepare rainbow palette
+palette = []
+for k in range(256):
+    palette.append(rainbowio.colorwheel(k))
 
-matrixType = (
-    neomatrix.NEO_MATRIX_BOTTOM +
-    neomatrix.NEO_MATRIX_RIGHT +
-    neomatrix.NEO_MATRIX_ROWS +
-    neomatrix.NEO_MATRIX_PROGRESSIVE
-)
-
-matrix = neomatrix.NeoMatrix(
-    leds,
-    NUM_COLS, NUM_CELLS,
-    1, 1,
-    matrixType,
-)
-
-grid = matrix._grid
-
-#####################
 
 # use Todbot's noise module from community bundle
 import noise
@@ -51,20 +40,10 @@ noise_scale = 0.07   # noise_scale * max(width, height) should be smaller than 1
 noise_incr = 0.01
 noise_x = 0.0
 noise_y = 0.0
-xsign = 0.0
-ysign = 1.0
+xsign = -1.0
+ysign = -1.0
 
 #####################
-
-# prepare rainbow palette
-def make_palette(palette, bright):
-    for hue in range(256):
-        color = rainbowio.colorwheel(hue)
-        r = int(bright * float(color >> 16))
-        g = int(bright * float((color >> 8) & 255))
-        b = int(bright * float(color & 255))
-        col = (r, g, b)
-        palette.append(col)
 
 # change direction of movement
 def change_direction():
@@ -85,9 +64,6 @@ def do_frame():
             pxl[j] = palette[c]         # convert hue to rainbow color
 
 #####################
-
-palette = []
-make_palette(palette, BRIGHTNESS)
 
 Debug = True
 
