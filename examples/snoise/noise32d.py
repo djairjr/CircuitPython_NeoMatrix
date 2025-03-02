@@ -3,7 +3,7 @@
 # https://github.com/todbot/CircuitPython_Noise
 #
 # 2 Mar 2025 - @pagong
-# Uses WaveShare ESP32-S3-Zero with a 16x16 NeoPixel matrix
+# Uses WaveShare ESP32-S3-Zero with a 32x32 NeoPixel matrix
 # https://circuitpython.org/board/waveshare_esp32_s3_zero/
 
 import time
@@ -12,25 +12,23 @@ import random
 import neopixel
 import rainbowio
 
+import matrix32
+
 #####################
 
-# for WS ESP32-S3-Zero with 16x16 NeoPixel-Matrix
-NUM_COLS = 16
-NUM_CELLS = 16
+# for WS ESP32-S3-Zero with 32x32 NeoPixel-Matrix
+BRIGHTNESS = 0.1   # A number between 0.0 and 1.0, where 0.0 is off, and 1.0 is max.
+PIN = board.IO1    # This is the default pin on WS ESP32-S3-Zero with 32x32 NeoPixel matrix
+matrix = matrix32.MatrixSetup(PIN, "hsquares", 1.0)
+grid = matrix._grid
+
+NUM_COLS = matrix._width
+NUM_CELLS = matrix._height
 
 NUM_PIXELS = (NUM_COLS * NUM_CELLS)  # Update this to match the number of LEDs.
 SPEED = 0.01       # Increase to slow down the animation. Decrease to speed it up.
-BRIGHTNESS = 0.1   # A number between 0.0 and 1.0, where 0.0 is off, and 1.0 is max.
-PIN = board.IO1    # This is the default pin on WS ESP32-S3-Zero with 16x16 NeoPixel matrix
 
-leds = neopixel.NeoPixel(PIN, NUM_PIXELS, brightness=BRIGHTNESS,
-                         pixel_order=neopixel.GRB, auto_write=False)
-
-# prepare rainbow palette
-palette = []
-for k in range(256):
-    palette.append(rainbowio.colorwheel(k))
-
+#####################
 
 # use Todbot's noise module from community bundle
 import noise
@@ -43,6 +41,16 @@ ysign = -1.0
 
 #####################
 
+# prepare rainbow palette
+def make_palette(palette, bright):
+    for hue in range(256):
+        color = rainbowio.colorwheel(hue)
+        r = int(bright * float((color >> 16) & 255))
+        g = int(bright * float((color >> 8) & 255))
+        b = int(bright * float(color & 255))
+        col = (r, g, b)
+        palette.append(col)
+
 # change direction of movement
 def change_direction():
     xs, ys = 0, 0
@@ -52,16 +60,19 @@ def change_direction():
     return float(xs), float(ys)
 
 def do_frame():
-    for j in range(NUM_COLS):           # for each pixel column
-        index = j*NUM_COLS
-        for i in range(NUM_CELLS):      # for each pixel row
-            idx = i if (j&1) else (NUM_CELLS-1 - i)     # zigzag
+    for i in range(NUM_CELLS):          # for each pixel row
+        nsx = noise_x + noise_scale*i
+        pxl = grid[i]
+        for j in range(NUM_COLS):       # for each pixel column
             # get a noise value in 2D noise space
-            n = noise.noise( noise_x + noise_scale*i, noise_y + noise_scale*j )
-            c = int((n+1.0) * 127.5)        # scale it from -1 - +1 -> 0 - 255
-            leds[index+idx] = palette[c]    # convert hue to rainbow color
+            n = noise.noise(nsx, noise_y + noise_scale*j)
+            c = int((n+1.0) * 127.5)    # scale it from -1 - +1 -> 0 - 255
+            pxl[j] = palette[c]         # convert hue to rainbow color
 
 #####################
+
+palette = []
+make_palette(palette, BRIGHTNESS)
 
 Debug = True
 
@@ -70,7 +81,7 @@ while True:
     do_frame()
     t2 = time.monotonic_ns()
 
-    leds.show()
+    grid.show()
     t3 = time.monotonic_ns()
 
     if Debug:

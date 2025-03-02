@@ -3,7 +3,7 @@
 # https://github.com/todbot/CircuitPython_Noise
 #
 # 2 Mar 2025 - @pagong
-# Uses WaveShare ESP32-S3-Zero with a 16x16 NeoPixel matrix
+# Uses WaveShare ESP32-S3-Zero with a 32x32 NeoPixel matrix
 # https://circuitpython.org/board/waveshare_esp32_s3_zero/
 
 import time
@@ -14,14 +14,14 @@ import rainbowio
 
 #####################
 
-# for WS ESP32-S3-Zero with 16x16 NeoPixel-Matrix
-NUM_COLS = 16
-NUM_CELLS = 16
+# for WS ESP32-S3-Zero with 32x32 NeoPixel-Matrix
+NUM_COLS = 32
+NUM_CELLS = 32
 
 NUM_PIXELS = (NUM_COLS * NUM_CELLS)  # Update this to match the number of LEDs.
 SPEED = 0.01       # Increase to slow down the animation. Decrease to speed it up.
 BRIGHTNESS = 0.1   # A number between 0.0 and 1.0, where 0.0 is off, and 1.0 is max.
-PIN = board.IO1    # This is the default pin on WS ESP32-S3-Zero with 16x16 NeoPixel matrix
+PIN = board.IO1    # This is the default pin on WS ESP32-S3-Zero with 32x32 NeoPixel matrix
 
 leds = neopixel.NeoPixel(PIN, NUM_PIXELS, brightness=BRIGHTNESS,
                          pixel_order=neopixel.GRB, auto_write=False)
@@ -51,13 +51,15 @@ def change_direction():
         ys = random.randint(-1, 1)
     return float(xs), float(ys)
 
-def do_frame():
-    for j in range(NUM_COLS):           # for each pixel column
-        index = j*NUM_COLS
-        for i in range(NUM_CELLS):      # for each pixel row
-            idx = i if (j&1) else (NUM_CELLS-1 - i)     # zigzag
+def do_frame(xoff, yoff, pixoff):
+    for j in range(NC2):           # for each pixel column
+        index = pixoff + j*NC2
+        nsy = noise_y + noise_scale * (yoff+j)
+        for i in range(NC2):       # for each pixel row
+            idx = i if (j&1) else (NC2-1 - i)     # zigzag
             # get a noise value in 2D noise space
-            n = noise.noise( noise_x + noise_scale*i, noise_y + noise_scale*j )
+            nsx = noise_x + noise_scale * (xoff+i)
+            n = noise.noise( nsx , nsy )
             c = int((n+1.0) * 127.5)        # scale it from -1 - +1 -> 0 - 255
             leds[index+idx] = palette[c]    # convert hue to rainbow color
 
@@ -65,9 +67,14 @@ def do_frame():
 
 Debug = True
 
+NC2 = NUM_COLS//2
+NP4 = NUM_PIXELS//4
 while True:
     t1 = time.monotonic_ns()
-    do_frame()
+    do_frame(0, 0, NP4)
+    do_frame(NC2, 0, 0)
+    do_frame(0, NC2, 3*NP4)
+    do_frame(NC2, NC2, 2*NP4)
     t2 = time.monotonic_ns()
 
     leds.show()
