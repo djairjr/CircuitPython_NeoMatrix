@@ -70,10 +70,23 @@ examples/
 │   ├── fire32.py
 │   └── fire8.py
 └── water               # Waterfall (Fire2012 with a blue palette)
-    ├── water16_a.py
-    ├── water16_b.py
-    ├── water16_c.py
-    ├── water32.py
-    └── water8.py
+│   ├── water16_a.py
+│   ├── water16_b.py
+│   ├── water16_c.py
+│   ├── water32.py
+│   └── water8.py
+└── snoise              # Simplex Noise demo using Tod Kurt's library
+    ├── noise16a.py
+    ├── noise16b.py
+    ├── noise16c.py
+    ├── noise16d.py
+    ├── noise32a.py
+    ├── noise32b.py
+    ├── noise32c.py
+    ├── noise32d.py
+    ├── noise32e.py
+    ├── noise8a.py
+    ├── noise8b.py
+    └── noise8c.py
 ```
 
