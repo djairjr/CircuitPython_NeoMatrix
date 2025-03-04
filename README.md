@@ -1,7 +1,7 @@
 ## CircuitPython_NeoMatrix
 
-Port of Adafruit's `Adafruit_NeoMatrix` [library](https://github.com/adafruit/Adafruit_NeoMatrix) for the Arduino to CircuitPython.  
-See the [Adafruit NeoPixel Überguide](https://learn.adafruit.com/adafruit-neopixel-uberguide/neomatrix-library) for everything you need to know about NeoPixel grids.
+Port of Adafruit's `Adafruit_NeoMatrix` [library][ada01] for the Arduino to CircuitPython.  
+See the [Adafruit NeoPixel Überguide][ada02] for everything you need to know about NeoPixel grids.
 
 - Features:
   - Single matrix: 8x8, 16x16, 8x32, 32x8 NeoPixels
@@ -27,10 +27,29 @@ See the [Adafruit NeoPixel Überguide](https://learn.adafruit.com/adafruit-neopi
 - Position of first Tile
   - Bottom, Top, Left, Right
 
+
+## Basic Usage
+1. Determine size and led aranagement of a single NeoPixel matrix.
+2. Determine number and arrangement of all your matrix tiles.
+3. Use these values to compute a `matrixType` variable.
+4. Create a normal CircuitPython `neopixel.NeoPixel` object.
+5. Use this `NeoPixel` object and `matrixType` variable to create a `neomatrix.NeoMatrix` object.
+6. Finally, use the APIs of the `NeoMatrix` object to draw colorful animations using X and Y coordinates.
+
+
+## Advanced Usage
+
+### `NeoMatrix` FrameBuffer API
+This drawing API is based on the [`adafruit_pixel_framebuf`][ada06] library by Melissa LeBlanc-Williams.
+
+### `NeoGrid` PixelMap API
+This drawing API is based on the [`adafruit_led_animation.grid`][ada07] library by Kattni Rembor.
+
+
 ## Demos
 
-There are several demos in the examples directory that are showing how
-the `neomatrix` library and the helper modules `matrix<##>.py` can be used.
+There are several demos in the `examples` directory that are showing how
+the `neomatrix.py` library and the helper modules `matrix<##>.py` can be used.
 
 Python files with an 8 in the name are intended for 8x8 or 8x32 NeoPixel matrices.
 Files with a 16 in the name are meant for 16x16 NeoMatrices and 
@@ -89,4 +108,18 @@ examples/
     ├── noise8b.py
     └── noise8c.py
 ```
+
+---
+
+[ada01]: https://github.com/adafruit/Adafruit_NeoMatrix
+[ada02]: https://learn.adafruit.com/adafruit-neopixel-uberguide/neomatrix-library
+
+[ada03]: https://github.com/adafruit/Adafruit_CircuitPython_NeoPixel
+[ada04]: https://github.com/adafruit/Adafruit_CircuitPython_framebuf
+[ada05]: https://github.com/adafruit/Adafruit_CircuitPython_PixelMap
+
+[ada06]: https://github.com/adafruit/Adafruit_CircuitPython_Pixel_Framebuf
+[ada07]: https://github.com/adafruit/Adafruit_CircuitPython_LED_Animation
+[ada08]: https://github.com/adafruit/Adafruit_CircuitPython_LED_Animation/blob/main/adafruit_led_animation/grid.py
+[ada09]: https://github.com/adafruit/Adafruit_CircuitPython_LED_Animation/blob/main/adafruit_led_animation/helper.py
 
