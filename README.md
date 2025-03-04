@@ -29,9 +29,9 @@ See the [Adafruit NeoPixel Überguide][ada02] for everything you need to know ab
 
 
 ## Basic Usage
-1. Determine size and led aranagement of a single NeoPixel matrix.
-2. Determine number and arrangement of all your matrix tiles.
-3. Use these values to compute a `matrixType` variable.
+1. Determine size and led arrangement of a single NeoPixel matrix.
+2. Determine number and tile arrangement of all your NeoMatrix shields.
+3. Use these values to compute a `matrixType` variable and size values.
 4. Create a normal CircuitPython `neopixel.NeoPixel` object.
 5. Use this `NeoPixel` object and `matrixType` variable to create a `neomatrix.NeoMatrix` object.
 6. Finally, use the APIs of the `NeoMatrix` object to draw colorful animations using X and Y coordinates.
@@ -39,11 +39,11 @@ See the [Adafruit NeoPixel Überguide][ada02] for everything you need to know ab
 
 ## Advanced Usage
 
-### `NeoMatrix` FrameBuffer API
-This drawing API is based on the [`adafruit_pixel_framebuf`][ada06] library by Melissa LeBlanc-Williams.
+### NeoMatrix FrameBuffer API
+This drawing API is based on the `adafruit_pixel_framebuf` [library][ada06] by Melissa LeBlanc-Williams.
 
-### `NeoGrid` PixelMap API
-This drawing API is based on the [`adafruit_led_animation.grid`][ada07] library by Kattni Rembor.
+### NeoGrid PixelMap API
+This drawing API is based on the `adafruit_led_animation.grid` [library][ada07] by Kattni Rembor.
 
 
 ## Demos
@@ -57,56 +57,13 @@ files with a 32 in the name should be used for tiled 32x32 matrices.
 
 ``` bash
 examples/
-├── bounce              # bouncing lines and random walks
-│   ├── bounce32.py
-│   ├── lines16.py
-│   ├── lines32.py
-│   ├── point.py
-│   ├── walk16.py
-│   └── walk32.py
-├── rainbow             # spiraling rainbows
-│   ├── spiral16_a.py
-│   ├── spiral16_b.py
-│   ├── spiral16_c.py
-│   ├── spiral32_a.py
-│   ├── spiral32_b.py
-│   ├── spiral8_a.py
-│   └── spiral8_b.py
-├── life                # Tim C's Game of Life animation
-│   ├── animate_life.py
-│   ├── life16.py
-│   ├── life32.py
-│   └── life8.py
-├── snake               # Tim C's snake animation
-│   ├── animate_snake.py
-│   ├── snake16.py
-│   ├── snake32.py
-│   └── snake8.py
-├── fire                # Mark Kriegsman's Fire2012 simulation
-│   ├── fire16_a.py
-│   ├── fire16_b.py
-│   ├── fire16_c.py
-│   ├── fire32.py
-│   └── fire8.py
-└── water               # Waterfall (Fire2012 with a blue palette)
-│   ├── water16_a.py
-│   ├── water16_b.py
-│   ├── water16_c.py
-│   ├── water32.py
-│   └── water8.py
-└── snoise              # Simplex Noise demo using Tod Kurt's library
-    ├── noise16a.py
-    ├── noise16b.py
-    ├── noise16c.py
-    ├── noise16d.py
-    ├── noise32a.py
-    ├── noise32b.py
-    ├── noise32c.py
-    ├── noise32d.py
-    ├── noise32e.py
-    ├── noise8a.py
-    ├── noise8b.py
-    └── noise8c.py
+├── bounce          # bouncing lines and random walks
+├── rainbow         # spiraling rainbows
+├── life            # Tim C's Game of Life animation
+├── snake           # Tim C's snake animation
+├── fire            # Mark Kriegsman's Fire2012 simulation
+└── water           # Waterfall (Fire2012 with a blue palette)
+└── snoise          # Simplex Noise demo using Tod Kurt's library
 ```
 
 ---
