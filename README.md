@@ -30,20 +30,24 @@ See the [Adafruit NeoPixel Überguide][ada02] for everything you need to know ab
 
 ## Basic Usage
 1. Determine size and led arrangement of a single NeoPixel matrix.
-2. Determine number and tile arrangement of all your NeoMatrix shields.
-3. Use these values to compute a `matrixType` variable and size values.
+2. Determine number and tile arrangement of your NeoPixel matrices.
+3. Use these values to compute a `matrixType` variable and several size values.
 4. Create a normal CircuitPython `neopixel.NeoPixel` object.
-5. Use this `NeoPixel` object and `matrixType` variable to create a `neomatrix.NeoMatrix` object.
+5. Use this `NeoPixel` object, the `matrixType` variable, and size values to create a `neomatrix.NeoMatrix` object.
 6. Finally, use the APIs of the `NeoMatrix` object to draw colorful animations using X and Y coordinates.
 
 
 ## Advanced Usage
+A `NeoMatrix` object is made from a `NeoPixel` [strip][ada03], a `FrameBuffer` [object][ada04],
+and from a `PixelGrid` [object][ada08]. That's why several APIs can be used to change the color of NeoPixels.
 
 ### NeoMatrix FrameBuffer API
 This drawing API is based on the `adafruit_pixel_framebuf` [library][ada06] by Melissa LeBlanc-Williams.
+However, it is extended from one matrix to an array of matrix tiles.
 
 ### NeoGrid PixelMap API
-This drawing API is based on the `adafruit_led_animation.grid` [library][ada07] by Kattni Rembor.
+This drawing API is based on the `adafruit_led_animation.grid` [library][ada08] by Kattni Rembor.
+However, it is extended from one matrix to an array of matrix tiles.
 
 
 ## Demos
