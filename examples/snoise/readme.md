@@ -16,12 +16,13 @@ This source [noise_square_code.py][tod02] was created by Tod Kurt and uses his l
 ## ESP32-S3-Zero with addon 16x16 NeoPixel matrix
 - 256 NeoPixels
 
-```
-noise16a.py
-noise16b.py
-noise16c.py
-noise16d.py
-```
+| Name | Type | Frames / second |
+| --- | --- | --- |
+| noise16a.py | NeoPixel | 20.1 fps |
+| noise16b.py | NeoMatrix | 6.1 fps |
+| noise16c.py | NeoGrid | 19.1 fps |
+| noise16d.py | NeoGrid + custom palette | 18.5 fps |
+
 
 ## ESP32-S3-Zero with addon 32x32 NeoPixel matrix (made from four 16x16 tiles)
 - 1024 NeoPixels
