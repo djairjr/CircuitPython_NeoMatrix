@@ -52,8 +52,8 @@ def change_direction():
     return float(xs), float(ys)
 
 def do_frame():
-    for i in range(NUM_CELLS):      # for each pixel row
-        for j in range(NUM_COLS):   # for each pixel column
+    for i in range(NUM_COLS):       # for each pixel column
+        for j in range(NUM_CELLS):  # for each pixel row
             index = j*NUM_COLS + i
             # get a noise value in 2D noise space
             n = noise.noise( noise_x + noise_scale*i, noise_y + noise_scale*j )

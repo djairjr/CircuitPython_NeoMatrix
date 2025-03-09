@@ -18,22 +18,22 @@ This source [noise_square_code.py][tod02] was created by Tod Kurt and uses his l
 
 | Name | Type | Frames / second |
 | --- | --- | --- |
-| noise16a.py | NeoPixel | 20.1 fps |
-| noise16b.py | NeoMatrix | 6.1 fps |
-| noise16c.py | NeoGrid | 19.1 fps |
-| noise16d.py | NeoGrid + custom palette | 18.5 fps |
+| noise16a.py | NeoPixel | 20.3 fps |
+| noise16b.py | NeoMatrix | 6.3 fps |
+| noise16c.py | NeoGrid | 18.9 fps |
+| noise16d.py | NeoGrid + custom palette | 18.1 fps |
 
 
 ## ESP32-S3-Zero with addon 32x32 NeoPixel matrix (made from four 16x16 tiles)
 - 1024 NeoPixels
 
-```
-noise32a.py
-noise32b.py
-noise32c.py
-noise32d.py
-noise32e.py
-```
+| Name | Type | Frames / second |
+| --- | --- | --- |
+| noise32a.py | NeoMatrix | 1.2 fps |
+| noise32b.py | NeoGrid | 4.3 fps |
+| noise32c.py | NeoGrid + loop unrolling | 4.8 fps |
+| noise32d.py | NeoGrid + custom palette | 4.7 fps |
+| noise32e.py | NeoPixel + custom loop unrolling | 5.2 fps |
 
 [wkpd1]: https://en.wikipedia.org/wiki/Simplex_noise
 [wkpd2]: https://en.wikipedia.org/wiki/Perlin_noise

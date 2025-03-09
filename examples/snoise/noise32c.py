@@ -54,10 +54,10 @@ def change_direction():
     return float(xs), float(ys)
 
 def do_frame():
-    for i in range(NUM_CELLS):          # for each pixel row
+    for i in range(NUM_COLS):           # for each pixel column
         nsx = noise_x + noise_scale*i
         pxl = grid[i]
-        for j in range(NUM_COLS):       # for each pixel column
+        for j in range(NUM_CELLS):      # for each pixel row
             # get a noise value in 2D noise space
             n = noise.noise(nsx, noise_y + noise_scale*j)
             c = int((n+1.0) * 127.5)    # scale it from -1 - +1 -> 0 - 255

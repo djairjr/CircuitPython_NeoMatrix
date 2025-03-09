@@ -52,10 +52,10 @@ def change_direction():
     return float(xs), float(ys)
 
 def do_frame(xoff, yoff, pixoff):
-    for j in range(NC2):           # for each pixel column
+    for j in range(NC2):           # for each pixel row
         index = pixoff + j*NC2
         nsy = noise_y + noise_scale * (yoff+j)
-        for i in range(NC2):       # for each pixel row
+        for i in range(NC2):       # for each pixel column
             idx = i if (j&1) else (NC2-1 - i)     # zigzag
             # get a noise value in 2D noise space
             nsx = noise_x + noise_scale * (xoff+i)

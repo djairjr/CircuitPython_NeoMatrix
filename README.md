@@ -66,7 +66,7 @@ examples/
 ├── life            # Tim C's Game of Life animation
 ├── snake           # Tim C's snake animation
 ├── fire            # Mark Kriegsman's Fire2012 simulation
-└── water           # Waterfall (Fire2012 with a blue palette)
+├── water           # Waterfall (Fire2012 with a blue palette)
 └── snoise          # Simplex Noise demo using Tod Kurt's library
 ```
 
