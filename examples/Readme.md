@@ -1,10 +1,10 @@
 ## Demos
 
-There are several demos in the `examples` directory that are showing how
-the `neomatrix.py` library and the helper modules `matrix<##>.py` can be used.
+The `examples` directory has several demos that are showing how the
+`neomatrix.py` library and the helper modules `matrix<##>.py` can be used.
 
-Python files with an 8 in the name are intended for 8x8 or 8x32 NeoPixel matrices.
-Files with a 16 in the name are meant for 16x16 NeoMatrices and 
+Python files with an 8 in the name are intended for 8x8 or 8x32 NeoPixel matrices.  
+Files with a 16 in the name are meant for 16x16 NeoMatrices and   
 files with a 32 in the name should be used for tiled 32x32 matrices.
 
 ``` bash

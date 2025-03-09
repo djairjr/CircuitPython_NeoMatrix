@@ -33,13 +33,13 @@ matrix = neomatrix.NeoMatrix(
     NUM_COLS, NUM_CELLS,
     1, 1,
     matrixType,
-    rotation=0,
 )
 
+grid = matrix._grid
 
 ####################### color mapping ###################
 
-ACT_PALETTE = 2        # 0 = Heat, 1 = Rainbow, 2 = Water, 3 = Forest
+ACT_PALETTE = 0        # 0 = Heat, 1 = Rainbow, 2 = Water, 3 = Forest
 
 HeatColors_palette = [
     0x000000,
@@ -105,7 +105,7 @@ def map_heat_to_color(palette, heat):
 
 PALETTE = array.array("L", [0] * 256)
 def create_lookup_table(palette):
-    for heat in range(255):
+    for heat in range(256):
         PALETTE[heat] = map_heat_to_color(palette, heat)
 
 ##################### fire simulation #######################
@@ -182,7 +182,7 @@ def fire2012(column):
     # Step 4.  Map from heat cells to LED colors
     for row in range(NUM_CELLS):
         color = PALETTE[heat[col+row]]
-        matrix.pixel(column, row, color)
+        grid[column][row] = color
 
 
 ########## main loop #################
@@ -196,7 +196,7 @@ while True:
         fire2012(column)
     t2 = time.monotonic_ns()
 
-    matrix.display()
+    grid.show()
     t3 = time.monotonic_ns()
 
     if Debug:

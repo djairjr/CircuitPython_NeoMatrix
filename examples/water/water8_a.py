@@ -1,32 +1,41 @@
 # SPDX-FileCopyrightText: 2025 Pagong
 # SPDX-License-Identifier: MIT
-'''
-# This is for WaveShare ESP32-S3-Zero with a 32x32 NeoPixel-Matrix
-'''
 
 import time
 import board
 import neopixel
 import array
 import random
-
 import neomatrix
-import matrix32
 
-#####################
-
-BRIGHTNESS = 0.1   # A number between 0.0 and 1.0, where 0.0 is off, and 1.0 is max.
-NEO_PIN = board.IO1 # NeoPixel pin on my ESP32-S3-Zero with 32x32 NeoPixel matrix
-matrix = matrix32.MatrixSetup(NEO_PIN, "hsquares", BRIGHTNESS)
-grid = matrix._grid
-
-NUM_COLS = matrix._width
-NUM_CELLS = matrix._height
+# for WS ESP32-S3-Matrix with 8x8 NeoPixel-Matrix
+NUM_COLS = 8
+NUM_CELLS = 8
 
 NUM_PIXELS = (NUM_COLS * NUM_CELLS)  # Update this to match the number of LEDs.
-SPEED = 0.01       # Increase to slow down the fire. Decrease to speed it up.
+SPEED = 0.1       # Increase to slow down the fire. Decrease to speed it up.
+BRIGHTNESS = 0.1   # A number between 0.0 and 1.0, where 0.0 is off, and 1.0 is max.
+PIN = board.IO14   # This is the default pin on WS ESP32-S3-Matrix with 8x8 NeoPixel matrix
+
+pixels = neopixel.NeoPixel(PIN, NUM_PIXELS, pixel_order=neopixel.RGB, brightness=BRIGHTNESS, auto_write=False)
 
 HEAT = bytearray(NUM_PIXELS)
+
+matrixType = (
+    neomatrix.NEO_MATRIX_BOTTOM +
+    neomatrix.NEO_MATRIX_RIGHT +
+    neomatrix.NEO_MATRIX_ROWS +
+    neomatrix.NEO_MATRIX_PROGRESSIVE
+)
+
+matrix = neomatrix.NeoMatrix(
+    pixels,
+    NUM_COLS, NUM_CELLS,
+    1, 1,
+    matrixType,
+    rotation=0,
+)
+
 
 ####################### color mapping ###################
 
@@ -171,10 +180,9 @@ def fire2012(column):
         heat[col+j] = newheat if (newheat <= 255) else 255
 
     # Step 4.  Map from heat cells to LED colors
-    pxl = grid[column]
     for row in range(NUM_CELLS):
         color = PALETTE[heat[col+row]]
-        pxl[row] = color
+        matrix.pixel(column, row, color)
 
 
 ########## main loop #################
@@ -188,7 +196,7 @@ while True:
         fire2012(column)
     t2 = time.monotonic_ns()
 
-    grid.show()
+    matrix.display()
     t3 = time.monotonic_ns()
 
     if Debug:

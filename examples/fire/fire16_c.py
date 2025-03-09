@@ -96,7 +96,7 @@ def map_heat_to_color(palette, heat):
 
 PALETTE = array.array("L", [0] * 256)
 def create_lookup_table(palette):
-    for heat in range(255):
+    for heat in range(256):
         PALETTE[heat] = map_heat_to_color(palette, heat)
 
 ##################### fire simulation #######################
